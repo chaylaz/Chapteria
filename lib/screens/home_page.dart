@@ -10,10 +10,7 @@ class _HomePageState extends State<HomePage> {
   final List<Map<String, String>> books = [
     {'title': 'Jejak Kehidupan', 'image': 'assets/images/jejakkehidupan.png'},
     {'title': 'Lubuk Hati', 'image': 'assets/images/lubukhati.png'},
-    {
-      'title': 'Should I Trust You',
-      'image': 'assets/images/shouldi.png'
-    },
+    {'title': 'Should I Trust You', 'image': 'assets/images/shouldi.png'},
     {
       'title': 'Whispers of the Empty Room',
       'image': 'assets/images/whisper.png'
@@ -35,6 +32,7 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.green[200],
+        automaticallyImplyLeading: false, // Menghapus tombol back
         title: Container(
           height: 40, // Mengurangi ukuran container
           child: TextField(
@@ -74,9 +72,7 @@ class _HomePageState extends State<HomePage> {
                             height: 50,
                             fit: BoxFit.cover,
                           ),
-                          title: Text(book['title']!,
-                              style: TextStyle(
-                                  fontSize: 14, fontWeight: FontWeight.bold)),
+                          title: Text(book['title']!),
                         )),
                     SizedBox(height: 20),
                   ],
