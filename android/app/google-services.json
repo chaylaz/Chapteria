@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "296474091283",
+    "project_id": "tubes-c27a7",
+    "storage_bucket": "tubes-c27a7.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:296474091283:android:962606a4791dc6e68684e6",
+        "android_client_info": {
+          "package_name": "com.chapteria.kanata"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "296474091283-fqr2cun8k6irf4c9d7lrltigjuu3lmea.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDNmHXryPs4gfVkeOgxIJJVOyAJEDz97cI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "296474091283-fqr2cun8k6irf4c9d7lrltigjuu3lmea.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

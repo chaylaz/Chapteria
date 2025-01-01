@@ -1,7 +1,84 @@
+// import 'package:chapteriaapp/firebase_options.dart';
+// import 'package:chapteriaapp/screens/home_page.dart';
+// import 'package:chapteriaapp/screens/register_page.dart';
+// import 'package:flutter/material.dart';
+// import 'package:firebase_core/firebase_core.dart';
+// import '../screens/login_page.dart';
+
+// void main() async {
+//   WidgetsFlutterBinding.ensureInitialized();
+//   await Firebase.initializeApp(
+//     options: DefaultFirebaseOptions.currentPlatform,
+//   );
+//   runApp(MyApp());
+// }
+
+// class MyApp extends StatelessWidget {
+//   @override
+//   Widget build(BuildContext context) {
+//     return MaterialApp(
+//       debugShowCheckedModeBanner: false,
+//       theme: ThemeData(
+//         primarySwatch: Colors.green,
+//       ),
+//       initialRoute: '/',
+//       routes: {
+//         '/': (context) => LoginPage(),
+//         '/register': (context) => RegisterPage(),
+//         '/home': (context) => HomePage(),
+//       },
+//     );
+//   }
+// }
+
+
+// import 'package:flutter/material.dart';
+// import 'package:firebase_core/firebase_core.dart';
+// import 'firebase_options.dart';
+// import 'screens/login_page.dart';
+// import 'screens/register_page.dart';
+// import 'screens/home_page.dart';
+
+// void main() async {
+//   WidgetsFlutterBinding.ensureInitialized();
+//   await Firebase.initializeApp(
+//     options: DefaultFirebaseOptions.currentPlatform,
+//   );
+//   runApp(const MyApp());
+// }
+
+// class MyApp extends StatelessWidget {
+//   const MyApp({super.key});
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return MaterialApp(
+//       debugShowCheckedModeBanner: false,
+//       theme: ThemeData(
+//         primarySwatch: Colors.green,
+//       ),
+//       home: LoginPage(), // Menggunakan home alih-alih initialRoute
+//       routes: {
+//         '/register': (context) => RegisterPage(),
+//         '/home': (context) => HomePage(),
+//       },
+//     );
+//   }
+// }
+
+
 import 'package:flutter/material.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
+import 'screens/login_page.dart';
+import 'screens/register_page.dart';
 import 'screens/home_page.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   runApp(MyApp());
 }
 
@@ -10,61 +87,14 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: LoginPage(),
-    );
-  }
-}
-
-class LoginPage extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: Padding(
-        padding: EdgeInsets.all(20),
-        child: Center(
-          child: SingleChildScrollView(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Image.asset(
-                  'assets/images/Logochapteria.png', // Ganti dengan logo Anda
-                  height: 100,
-                ),
-                SizedBox(height: 20),
-                TextField(
-                  decoration: InputDecoration(
-                    labelText: 'Enter your email',
-                    border: OutlineInputBorder(),
-                  ),
-                ),
-                SizedBox(height: 10),
-                TextField(
-                  obscureText: true,
-                  decoration: InputDecoration(
-                    labelText: 'Enter your password',
-                    border: OutlineInputBorder(),
-                    suffixIcon: Icon(Icons.visibility),
-                  ),
-                ),
-                SizedBox(height: 10),
-                ElevatedButton(
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => HomePage()),
-                    );
-                  },
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.green[200],
-                    padding: EdgeInsets.symmetric(horizontal: 50, vertical: 15),
-                  ),
-                  child: Text('Login', style: TextStyle(fontSize: 16)),
-                ),
-              ],
-            ),
-          ),
-        ),
+      theme: ThemeData(
+        primarySwatch: Colors.green,
       ),
+      home: const LoginPage(), // Changed from initialRoute to home
+      routes: {
+        '/register': (context) => RegisterPage(),
+        '/home': (context) => HomePage(),
+      },
     );
   }
 }
