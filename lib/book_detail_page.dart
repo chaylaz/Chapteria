@@ -60,15 +60,6 @@ class BookDetailPage extends StatelessWidget {
                       color: Colors.black87,
                     ),
                   ),
-                  SizedBox(height: 16),
-                  Text(
-                    'Sinopsis',
-                    style: TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.w600,
-                      color: Colors.black87,
-                    ),
-                  ),
                   SizedBox(height: 8),
                   Text(
                     description,
