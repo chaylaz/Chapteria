@@ -325,19 +325,278 @@ class BookDetailPage extends StatelessWidget {
 }
 
 class LibraryPage extends StatelessWidget {
+   final List<Map<String, String>> books = [
+    {
+      'title': 'Jejak Kehidupan',
+      'status': 'Available Offline',
+      'imageUrl': 'assets/images/jejakkehidupan.png',
+    },
+    {
+      'title': 'Lubuk Hati',
+      'status': 'Available Offline',
+      'imageUrl': 'assets/images/lubukhati.png',
+    },
+    {
+      'title': 'Should I Trust You',
+      'status': 'Available Offline',
+      'imageUrl': 'assets/images/shouldi.png',
+    },
+    // Menambahkan lebih banyak buku untuk menunjukkan scroll
+    {
+      'title': 'Whispers of the Empty Room',
+      'status': 'Available Offline',
+      'imageUrl': 'assets/images/whisper.png',
+    },
+    {
+      'title': 'After Mid Night',
+      'status': 'Available Offline',
+      'imageUrl': 'assets/images/aftermidnight.png',
+    },
+    {
+      'title': 'Now I Know',
+      'status': 'Available Offline',
+      'imageUrl': 'assets/images/nowiknow.jpg',
+    },
+  ];
+
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Text('Halaman Library'),
+    return SingleChildScrollView(
+      child: Container(
+        padding: EdgeInsets.all(16.0),
+        child: GridView.builder(
+          shrinkWrap: true,
+          physics:
+              NeverScrollableScrollPhysics(), // Karena scroll sudah ditangani SingleChildScrollView
+          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: 3,
+            childAspectRatio: 0.5,
+            crossAxisSpacing: 12.0,
+            mainAxisSpacing: 12.0,
+          ),
+          itemCount: books.length,
+          itemBuilder: (context, index) {
+            return Column(
+              children: [
+                Expanded(
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(8.0),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.grey.withOpacity(0.3),
+                          spreadRadius: 1,
+                          blurRadius: 3,
+                          offset: Offset(0, 2),
+                        ),
+                      ],
+                    ),
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(8.0),
+                      child: Image.asset(
+                        books[index]['imageUrl']!,
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                  ),
+                ),
+                SizedBox(height: 8.0),
+                Text(
+                  books[index]['title']!,
+                  style: TextStyle(
+                    fontSize: 12.0,
+                    fontWeight: FontWeight.w500,
+                  ),
+                  textAlign: TextAlign.center,
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
+                ),
+                SizedBox(height: 4.0),
+                Text(
+                  books[index]['status']!,
+                  style: TextStyle(
+                    fontSize: 10.0,
+                    color: Colors.grey[600],
+                  ),
+                ),
+              ],
+            );
+          },
+        ),
+      ),
     );
   }
 }
 
 class ProfilePage extends StatelessWidget {
+  final List<Map<String, String>> recentBooks = [
+    {
+      'title': 'Jejak Kehidupan',
+      'lastRead': '2 days ago',
+      'progress': '75%',
+      'imageUrl': 'assets/images/jejakkehidupan.png',
+    },
+    {
+      'title': 'Lubuk Hati',
+      'lastRead': '5 days ago',
+      'progress': '45%',
+      'imageUrl': 'assets/images/lubukhati.png',
+    },
+    {
+      'title': 'Should I Trust You',
+      'lastRead': '1 week ago',
+      'progress': '90%',
+      'imageUrl': 'assets/images/shouldi.png',
+    },
+  ];
+
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Text('Halaman Profile'),
+    return SingleChildScrollView(
+      child: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          children: [
+            Text(
+              'Profile',
+              style: TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            SizedBox(height: 20),
+            // Profile Image
+            Container(
+              width: 120,
+              height: 120,
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                image: DecorationImage(
+                  image: AssetImage(
+                      'assets/images/fotoprofil.jpg'), // sesuaikan dengan path image Anda
+                  fit: BoxFit.cover,
+                ),
+              ),
+            ),
+            SizedBox(height: 16),
+            // Name
+            Text(
+              'Kim Chaylalala',
+              style: TextStyle(
+                fontSize: 18,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            SizedBox(height: 24),
+            // About Yourself Section
+            Container(
+              width: double.infinity,
+              padding: EdgeInsets.all(16),
+              decoration: BoxDecoration(
+                color: Color(0xFFB5D1C9),
+                borderRadius: BorderRadius.circular(12),
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    'Adalah yang anak rajin menabung di kantin',
+                    style: TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.w500,
+                      color: Colors.black87,
+                    ),
+                  ),
+                  SizedBox(height: 60),
+                ],
+              ),
+            ),
+            SizedBox(height: 24),
+            // Terakhir dibaca Section
+            Align(
+              alignment: Alignment.centerLeft,
+              child: Text(
+                'Terakhir dibaca',
+                style: TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+            SizedBox(height: 16),
+            // Recently Read Books List
+            ListView.builder(
+              shrinkWrap: true,
+              physics: NeverScrollableScrollPhysics(),
+              itemCount: recentBooks.length,
+              itemBuilder: (context, index) {
+                return Card(
+                  elevation: 2,
+                  margin: EdgeInsets.only(bottom: 12),
+                  child: Padding(
+                    padding: const EdgeInsets.all(12.0),
+                    child: Row(
+                      children: [
+                        // Book Cover
+                        Container(
+                          width: 60,
+                          height: 80,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(8),
+                            image: DecorationImage(
+                              image: AssetImage(recentBooks[index]['imageUrl']!),
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                        ),
+                        SizedBox(width: 16),
+                        // Book Details
+                        Expanded(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                recentBooks[index]['title']!,
+                                style: TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                              SizedBox(height: 4),
+                              Text(
+                                'Last read ${recentBooks[index]['lastRead']!}',
+                                style: TextStyle(
+                                  fontSize: 12,
+                                  color: Colors.grey[600],
+                                ),
+                              ),
+                              SizedBox(height: 8),
+                              // Progress Bar
+                              LinearProgressIndicator(
+                                value: double.parse(recentBooks[index]['progress']!.replaceAll('%', '')) / 100,
+                                backgroundColor: Colors.grey[200],
+                                valueColor: AlwaysStoppedAnimation<Color>(Color(0xFF1D4144)),
+                              ),
+                              SizedBox(height: 4),
+                              Text(
+                                'Progress: ${recentBooks[index]['progress']}',
+                                style: TextStyle(
+                                  fontSize: 12,
+                                  color: Colors.grey[600],
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                );
+              },
+            ),
+          ],
+        ),
+      ),
     );
   }
 }
